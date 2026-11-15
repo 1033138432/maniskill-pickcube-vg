@@ -1,0 +1,36 @@
+# 依赖说明
+#
+# 本实验需要两个互相冲突的 Python 环境，无法合并（见 docs/02_pitfalls_and_failures.md 坑 7）：
+#
+#   A. openpi 环境（Python 3.11，JAX）—— 只在训练和服务侧用
+#      直接用 openpi 仓库自己的依赖，不要在这里装：
+#          git clone https://github.com/Physical-Intelligence/openpi
+#          cd openpi && uv sync
+#
+#   B. ManiSkill 环境（Python 3.10，SAPIEN）—— 数据生成和评测侧用
+#      即下面这份 requirements.txt：
+#          python3.10 -m venv .venv && source .venv/bin/activate
+#          pip install -r requirements.txt
+#
+# 两个环境通过 WebSocket 通信：openpi_client 是纯 Python 包，
+# 把 $OPENPI_ROOT/packages/openpi-client/src 加进 PYTHONPATH 即可（common.sh 已自动处理）。
+
+# --- 仿真与渲染 ---
+mani_skill==3.0.1        # pip 包名以官方安装文档为准：https://maniskill.readthedocs.io
+sapien==3.0.3
+gymnasium>=0.29,<1.0
+
+# --- 数据处理 ---
+numpy
+torch                    # 只需 CPU 版本（仅做 tensor 包装）
+h5py                     # 读官方演示 trajectory.h5
+Pillow                   # RGB → JPEG
+pyarrow                  # 写 LeRobot parquet
+datasets                 # HF datasets 格式校验
+huggingface_hub          # 下载官方演示
+
+# --- 用于录像 ---
+# ffmpeg 需另外装（系统包，非 pip）：apt install ffmpeg / brew install ffmpeg
+
+# --- 用于把录像拼成 GIF（可选，只在重做 README 的对照动画时才需要）---
+# pip install imageio imageio-ffmpeg     # imageio-ffmpeg 自带 ffmpeg 可执行文件

@@ -1,0 +1,19 @@
+--- a/mani_skill/envs/tasks/tabletop/pick_cube.py
++++ b/mani_skill/envs/tasks/tabletop/pick_cube.py
+@@ -53,6 +53,7 @@
+         else:
+             cfg = PICK_CUBE_CONFIGS["panda"]
+         self.cube_half_size = cfg["cube_half_size"]
++        self.cube_color = cfg.get("cube_color", [1, 0, 0, 1])   # OOD 可配置
+         self.goal_thresh = cfg["goal_thresh"]
+         self.cube_spawn_half_size = cfg["cube_spawn_half_size"]
+         self.cube_spawn_center = cfg["cube_spawn_center"]
+@@ -88,7 +89,7 @@
+         self.cube = actors.build_cube(
+             self.scene,
+             half_size=self.cube_half_size,
+-            color=[1, 0, 0, 1],
++            color=self.cube_color,
+             name="cube",
+             initial_pose=sapien.Pose(p=[0, 0, self.cube_half_size]),
+         )

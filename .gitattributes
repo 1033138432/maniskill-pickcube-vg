@@ -1,0 +1,15 @@
+# 统一换行符为 LF（脚本在 Linux 训练机上跑，CRLF 会让 bash 报 $'\r': command not found）
+* text=auto eol=lf
+
+# 二进制文件不做换行转换，也不参与 diff
+*.mp4 binary
+*.gif binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.parquet binary
+*.h5 binary
+*.npz binary
+
+# shell 脚本显式标注
+*.sh text eol=lf

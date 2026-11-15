@@ -1,0 +1,35 @@
+MIT License
+
+Copyright (c) 2026 maniskill-pickcube-vg contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+第三方组件声明 / Third-party notices
+
+本仓库不包含，只以补丁（patch）形式修改以下上游项目，二者均为 Apache-2.0：
+
+- openpi — https://github.com/Physical-Intelligence/openpi (Apache-2.0)
+  被修改文件：src/openpi/training/config.py，见 openpi_patch/
+- ManiSkill — https://github.com/haosulab/ManiSkill (Apache-2.0)
+  被修改文件：mani_skill/envs/tasks/tabletop/pick_cube.py，见 maniskill_patch/
+
+π0.5 / π0 模型权重、ManiSkill 官方演示数据、仿真资产（ms_assets）均不在本仓库内，
+其使用须遵守各自上游的许可条款。results/ 与 media/ 下的实验产物由本仓库以 MIT 授权。

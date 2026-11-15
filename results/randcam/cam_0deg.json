@@ -1,0 +1,560 @@
+{
+ "summary": {
+  "split": "ind",
+  "episodes": 50,
+  "success": 45,
+  "rate": 0.9
+ },
+ "episodes": [
+  {
+   "episode": 0,
+   "success": true,
+   "steps": 61,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 1,
+   "success": true,
+   "steps": 76,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 2,
+   "success": true,
+   "steps": 89,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 3,
+   "success": true,
+   "steps": 79,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 4,
+   "success": false,
+   "steps": 200,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 5,
+   "success": true,
+   "steps": 79,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 6,
+   "success": true,
+   "steps": 68,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 7,
+   "success": true,
+   "steps": 52,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 8,
+   "success": true,
+   "steps": 58,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 9,
+   "success": true,
+   "steps": 66,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 10,
+   "success": true,
+   "steps": 115,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 11,
+   "success": true,
+   "steps": 143,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 12,
+   "success": true,
+   "steps": 77,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 13,
+   "success": true,
+   "steps": 76,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 14,
+   "success": true,
+   "steps": 76,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 15,
+   "success": true,
+   "steps": 84,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 16,
+   "success": true,
+   "steps": 72,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 17,
+   "success": true,
+   "steps": 84,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 18,
+   "success": true,
+   "steps": 68,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 19,
+   "success": true,
+   "steps": 85,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 20,
+   "success": true,
+   "steps": 73,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 21,
+   "success": true,
+   "steps": 74,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 22,
+   "success": true,
+   "steps": 124,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 23,
+   "success": true,
+   "steps": 45,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 24,
+   "success": true,
+   "steps": 63,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 25,
+   "success": true,
+   "steps": 85,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 26,
+   "success": false,
+   "steps": 200,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 27,
+   "success": true,
+   "steps": 111,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 28,
+   "success": false,
+   "steps": 200,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 29,
+   "success": true,
+   "steps": 68,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 30,
+   "success": true,
+   "steps": 75,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 31,
+   "success": true,
+   "steps": 87,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 32,
+   "success": false,
+   "steps": 200,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 33,
+   "success": true,
+   "steps": 79,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 34,
+   "success": true,
+   "steps": 80,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 35,
+   "success": true,
+   "steps": 66,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 36,
+   "success": true,
+   "steps": 74,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 37,
+   "success": true,
+   "steps": 82,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 38,
+   "success": false,
+   "steps": 200,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 39,
+   "success": true,
+   "steps": 68,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 40,
+   "success": true,
+   "steps": 69,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 41,
+   "success": true,
+   "steps": 64,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 42,
+   "success": true,
+   "steps": 69,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 43,
+   "success": true,
+   "steps": 60,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 44,
+   "success": true,
+   "steps": 92,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 45,
+   "success": true,
+   "steps": 67,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 46,
+   "success": true,
+   "steps": 68,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 47,
+   "success": true,
+   "steps": 63,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  },
+  {
+   "episode": 48,
+   "success": true,
+   "steps": 93,
+   "color": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "episode": 49,
+   "success": true,
+   "steps": 55,
+   "color": [
+    0.1,
+    0.7,
+    0.15,
+    1.0
+   ]
+  }
+ ]
+}
