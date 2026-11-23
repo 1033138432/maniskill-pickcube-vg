@@ -2,16 +2,16 @@
 
 > 从零复现的完整步骤。每一步都给了可直接执行的命令与需要修改的代码位置。
 
-### 7.1 环境要求
+### 1. 环境要求
 
 | 项 | 要求 |
 |---|---|
 | GPU | ≥ 40 GB 显存（L40 / A100 / H100）|
-| 磁盘 | ≥ 120 GB（权重 13 GB + 数据 25 GB + 断点 30 GB + 缓冲）|
+| 磁盘 | ≥ 120 GB（权重 12.5 GB + 数据 25 GB + 断点 26 GB = 2×13 GB + 缓冲）|
 | Python | openpi 需 3.11；ManiSkill 需 3.10 |
 | 长期依赖 | openpi（JAX）、ManiSkill 3.0.1 + SAPIEN 3.0.3、Vulkan |
 
-### 7.2 第一步：下载 π0.5 base 权重
+### 2. 第一步：下载 π0.5 base 权重
 
 ```bash
 # 官方源（GCS，国内慢）：gs://openpi-assets/checkpoints/pi05_base
@@ -50,7 +50,7 @@ print('张量:', len(flat), '参数:', round(sum(x.size for x in flat)/1e9, 3), 
 "   # 期望：51 张量，3.353 B
 ```
 
-### 7.3 第二步：下载官方演示
+### 3. 第二步：下载官方演示
 
 ```bash
 python -c "
@@ -62,7 +62,7 @@ cd <路径>/demos && unzip PickCube-v1.zip
 # 得到 PickCube-v1/motionplanning/trajectory.h5（1000 条轨迹）
 ```
 
-### 7.4 第三步：改 ManiSkill 源码（1 处）
+### 4. 第三步：改 ManiSkill 源码（2 处）
 
 **文件**：`<site-packages>/mani_skill/envs/tasks/tabletop/pick_cube.py`
 
@@ -84,25 +84,30 @@ PICK_CUBE_CONFIGS["panda"]["cube_color"] = [0.15, 0.35, 0.85, 1.0]   # 蓝色
 env = gym.make("PickCube-v1", ...)   # 构造前设置才生效
 ```
 
-### 7.5 第四步：生成数据
+### 5. 第四步：生成数据
 
 ```bash
+# 全部命令在仓库根目录执行；$PY 是环境 B（含 mani_skill）的解释器，见 README 快速开始
 # 三套基线数据（IND / OOD-相机 / OOD-颜色）
 VK_ICD_FILENAMES=/etc/vulkan/icd.d/nvidia_icd.json \
 MS_ASSET_DIR=<ms_assets路径> \
-python 02_build_dataset.py --split ind --n 600
-python 02_build_dataset.py --split ood_color --n 600
-python 02_build_dataset.py --split ood_cam --n 600
-# 或者一条命令：bash 02b_gen_all_splits.sh 600
+$PY scripts_local/02_build_dataset.py --split ind --n 600
+$PY scripts_local/02_build_dataset.py --split ood_color --n 600
+$PY scripts_local/02_build_dataset.py --split ood_cam --n 600
+# 或者一条命令：bash scripts_local/02b_gen_all_splits.sh 600
 
 # 随机化相机数据（官方演示只有 1000 条轨迹）
-python 03_build_dataset_randcam.py --n 1000
+$PY scripts_local/03_build_dataset_randcam.py --n 1000
 ```
+
+> **⚠️ 先看 FOV**：`02_build_dataset.py` 默认 `fov=1.1`，而 `03` / `08` / `11` 默认 `1.05`。
+> 按上面原样跑出来的基线数据就是 `fov=1.1`，这会和随机化、评测混入第二个视觉变量——
+> 详见 [`04`](04_deviations_and_limitations.md) D4。要严格单变量，三条命令都显式传同一个 `--fov`。
 
 **脚本里的关键参数**：
 
 ```python
-# build_dataset.py
+# scripts_local/02_build_dataset.py
 TASKS = {"PickCube-v1": ("PickCube-v1/motionplanning/trajectory.h5",
                          "pick up the cube and move it to the goal")}
 SPLITS = {
@@ -114,7 +119,7 @@ SPLITS = {
                   "cam": ([0.58,0.42,0.50], [0.02,0.0,0.03])},   # 外移+抬高 ~20°
 }
 
-# build_dataset_randcam.py
+# scripts_local/03_build_dataset_randcam.py
 BASE  = np.array([0.45, 0.30, 0.38])
 DELTA = np.array([0.13, 0.12, 0.12])     # t=1 即 20°
 TS = [0.0, 0.25, 0.5, 0.75, 1.0]         # 5 档
@@ -122,10 +127,10 @@ TS = [0.0, 0.25, 0.5, 0.75, 1.0]         # 5 档
 color = COLORS[(idx // len(TS)) % len(COLORS)]
 ```
 
-### 7.6 第五步：转 LeRobot
+### 6. 第五步：转 LeRobot
 
 ```bash
-python 04_convert_to_lerobot.py \
+$PY scripts_local/04_convert_to_lerobot.py \
   --src dataset/ind \
   --root lerobot \
   --repo-id pickcube_ind \
@@ -146,7 +151,7 @@ schema = schema.with_metadata({b"huggingface": json.dumps(hf_meta).encode()})
 info = {"chunks_size": 10000, ...}
 ```
 
-### 7.7 第六步：改 openpi 源码（3 处）
+### 7. 第六步：改 openpi 源码（3 处）
 
 **改动 A：加 `_SliceActions` 类**
 
@@ -214,7 +219,7 @@ TrainConfig(
 
 > 随机化版本复制一份，改 `name`、`repo_id="pickcube_ind_randcam"` 即可。
 
-### 7.8 第七步：算归一化统计量
+### 8. 第七步：算归一化统计量
 
 ```bash
 cd <openpi根目录>
@@ -223,11 +228,14 @@ HF_LEROBOT_HOME=<lerobot路径> uv run scripts/compute_norm_stats.py \
 # 输出：assets/pi05_pickcube_lora/pickcube_ind/norm_stats.json
 ```
 
-### 7.9 第八步：训练
+### 9. 第八步：训练
 
 ```bash
 cd <openpi根目录>
-source ./my_env.sh          # 设置 HF_HOME / HF_LEROBOT_HOME / VK_ICD 等
+# 仓库里没有 my_env.sh。二选一：
+#   a) 你自己的 env 脚本（如 openpi 根目录下的 my_env.sh）——可选，没有也能训
+#   b) 用仓库自带的：source <仓库根目录>/scripts_local/common.sh
+[ -f ./my_env.sh ] && source ./my_env.sh
 export HF_LEROBOT_HOME=<lerobot路径>
 export CUDA_VISIBLE_DEVICES=0
 
@@ -244,7 +252,7 @@ uv run scripts/train.py pi05_pickcube_lora \
 
 **断点续训**（崩溃后）：加 `--resume`，去掉 `--overwrite`。
 
-### 7.10 第九步：起服务
+### 10. 第九步：起服务
 
 ```bash
 cd <openpi根目录>
@@ -254,7 +262,7 @@ CUDA_VISIBLE_DEVICES=0 uv run scripts/serve_policy.py policy:checkpoint \
 # INFO:websockets.server:server listening on 0.0.0.0:8000
 ```
 
-### 7.11 第十步：评测
+### 11. 第十步：评测
 
 ```bash
 export OPENPI_ROOT=<openpi根目录>
@@ -263,13 +271,13 @@ export VK_ICD_FILENAMES=/etc/vulkan/icd.d/nvidia_icd.json
 export MS_ASSET_DIR=<ms_assets路径>
 
 # 评测脚本是 WebSocket 客户端，不加载权重：测哪个模型由服务端决定
-$PY 08_eval_single_split.py \
+$PY scripts_local/08_eval_single_split.py \
   --split ind \
   --episodes 100 \
   --out results/ind.json
 
 # 或者直接跑完整 12 格（推荐）：
-bash 09_eval_full_protocol.sh baseline results/baseline
+bash scripts_local/09_eval_full_protocol.sh baseline results/baseline
 ```
 
 **评测脚本里两个关键点**（对应坑 5、坑 2）：
@@ -285,7 +293,7 @@ env.reset(seed=0)
 env.goal_site.show_visual(); env._hidden_objects = []
 ```
 
-### 7.12 复现检查清单
+### 12. 复现检查清单
 
 | # | 检查项 | 期望 |
 |---|---|---|

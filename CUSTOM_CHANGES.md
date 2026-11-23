@@ -153,7 +153,7 @@ openpi venv (Python 3.11, JAX)  ──WebSocket──  ManiSkill venv (Python 3.
 本仓库**不包含**：
 
 ```text
-模型权重（π0.5 base 12.44 GB、训练断点 15 GB/个）
+模型权重（π0.5 base 12.44 GB、训练断点 13 GB/个）
 LeRobot 数据集（约 25 GB）
 ManiSkill 仿真资产（8.2 GB）
 虚拟环境
